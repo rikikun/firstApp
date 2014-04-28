@@ -17,9 +17,9 @@ public class TransactionDAO {
 	public List<userTransaction> selectAllTransaction() {
 		return tem.find("from userTransaction");
 	}
-	
-	public void insertTransaction(userTransaction tx){
-		tem.save(tx);	
+
+	public void insertTransaction(userTransaction tx) {
+		tem.save(tx);
 	}
 
 	public HibernateTemplate getTem() {
