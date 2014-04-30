@@ -1,5 +1,7 @@
 package com.thanakorn.controller;
 
+import java.util.List;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,13 +23,20 @@ public class ActionController extends HibernateDaoSupport {
 	userData user;
 	stockData stock;
 	Integer amount;
-	@Autowired
 	UserService service;
 	
+	List<userTransaction> listTransaction;
+	@Autowired
+	HibernateTemplate hi;
 	
 	public String InsertTransaction(){
-//		service.saveTransaction(new userTransaction(user, stock, amount));
-		service.showAllTransaction();
+		  WebApplicationContext context = WebApplicationContextUtils
+		  .getRequiredWebApplicationContext(ServletActionContext
+		  .getServletContext());
+		  TransactionDAO tx = context.getBean(TransactionDAO.class);
+		  HibernateTemplate hi = context.getBean(HibernateTemplate.class);
+		  service = context.getBean(UserService.class);
+		  listTransaction =	service.showAllTransaction();
 		return "success";
 	}
 
@@ -39,6 +48,14 @@ public class ActionController extends HibernateDaoSupport {
 
 	public Integer getAmount() {
 		return amount;
+	}
+
+	public List<userTransaction> getListTransaction() {
+		return listTransaction;
+	}
+
+	public void setListTransaction(List<userTransaction> listTransaction) {
+		this.listTransaction = listTransaction;
 	}
 
 	public void setAmount(Integer amount) {

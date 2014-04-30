@@ -6,11 +6,11 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default"  extends="struts-default">
 
 		<action name="empinfo" class="com.thanakorn.controller.ActionController"
 			method="InsertTransaction">
-			<result name="success">/success.jsp</result>
+			<result name="success">list_transaction.jsp</result>
 		</action>
 
 		<!-- <action name="userSpringAction" class="userSpringAction"> -->
